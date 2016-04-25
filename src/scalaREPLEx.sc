@@ -70,13 +70,40 @@ argh.c + argh.b + argh.a
 case class Person(firstName: String, lastName: String) {
 }
 
-object Alien{
+//object Alien{
+//
+//  def greet(per: Person): String = {
+//    "Hello " + per.firstName
+//  }
+//
+//}
+//
+//val newPer = new Person("mike", "adams")
+//Alien.greet(newPer)
 
-  def greet(per: Person): String = {
-    "Hello " + per.firstName
-  }
+import pacakagey.classy1
+val classy1Class = new classy1
 
-}
+import pacakagey.classy2
+val classy2Class = new classy2
 
-val newPer = new Person("mike", "adams")
-Alien.greet(newPer)
+import pacakagey.classy3
+val classy3Class = new classy3
+
+val list = List(1,2,3,4,5)
+list.head
+list.sum
+list.max
+list.min
+list.tail
+list.reverse
+
+val set = Set(1,2,3,4,5,65,4)
+set.head
+set.sum
+set.subsets()
+
+val langauge = Set("English", "French", "Spanish", "German", "Chinese")
+language.+("Turkish")
+
+
