@@ -12,7 +12,7 @@ object One {
     (guess + x / guess) / 2
 
   def isGoodEnough(guess: Double, x: Double): Boolean =
-    abs(square(guess) - x) < 0.001
+    abs(square(guess) - x)/x < 0.001
 
   def sqrt(x: Double) = sqrtIter(1.0, x)
 
@@ -40,4 +40,49 @@ object test extends App{
   }
 
   println(factorial(6))
+
+  def sum(f: Int => Int)(a: Int, b: Int): Int = {
+    def iter(a: Int, result: Int): Int = {
+      if (a > b) result
+      else iter(a + 1, result + f(a))
+    }
+    iter(a, 0)
+  }
+
+  def linearSum(a: Int, b: Int): Int =
+    if (a > b) 0
+    else a + linearSum(a + 1, b)
+
+  def product(f: Int => Int)(a: Int, b: Int): Int = {
+    def iter(a: Int, result: Int): Int = {
+      println(a)
+      if (a > b) result
+      else iter(a + 1, result * f(a))
+    }
+    iter(a, 1)
+  }
+
+  def factorial2(n: Int): Int =
+    n match {
+    case _ => product(Int=>Int)(n, 0)
+  }
+
+  def operate(f: Int => Int)
+             (oper: (Int, Int) => Int)
+             (a: Int, b: Int, init: Int): Int = {
+    def iter(a: Int, result: Int): Int = {
+      if (a > b) result
+      else iter(a + 1, oper(result, f(a)))
+    }
+    iter(a, init)
+  }
+
+  println(linearSum(1,7))
+  println(sum(Int => Int)(1, 7))
+
+  println(product(Int=>Int)(1,3))
+
+  println(factorial(5))
+
+//  println(operate(Int=>Int)((a, b) => init)(1,7,0))
 }
