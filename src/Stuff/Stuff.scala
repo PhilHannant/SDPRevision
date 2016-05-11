@@ -23,9 +23,15 @@ object stuffTest extends App {
   def foldLeft(list:List[Double], initVal:Double, f:(Double, Double) => Double):Double = {
     list match {
       case Nil => initVal
-      case head::tail => foldLeft(tail, f(initVal, head), f)
+      case head :: tail => foldLeft(tail, f(initVal, head), f)
     }
   }
+    def flatten(lst: List[_]): List[Any] = lst match {
+      case Nil => Nil
+      case (head: List[_]) :: tail => flatten(head) ::: flatten(tail)
+      case head :: tail => head :: flatten(tail)
+    }
+  
 
   val list = List(1.0,2.0,3.0,4.0,5.0)
 //  val newList = map(list, x=>x*x)
