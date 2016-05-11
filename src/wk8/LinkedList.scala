@@ -42,6 +42,9 @@ final case class Pair[T](head: T, tail: LinkedList[T]) extends LinkedList[T]
 
 final case class End[T]() extends LinkedList[T]
 
+
+
+
 object testArea extends App {
 
 //  val example = Pair(1, Pair(2, Pair(3, End())))
