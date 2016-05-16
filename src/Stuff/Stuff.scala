@@ -31,7 +31,7 @@ object stuffTest extends App {
       case (head: List[_]) :: tail => flatten(head) ::: flatten(tail)
       case head :: tail => head :: flatten(tail)
     }
-  
+
 
   val list = List(1.0,2.0,3.0,4.0,5.0)
 //  val newList = map(list, x=>x*x)
