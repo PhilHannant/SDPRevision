@@ -4,11 +4,11 @@ sealed trait Shape{
   def sides:Int
   def perimeter:Double
   def area:Double
-  def colour: Colour
+  def getColour: Colour
 }
 
 
-case class Circle(r: Int, colour: Colour) extends Shape{
+case class Circle(r: Int) extends Shape{
 
   def sides: Int = {
     1
@@ -22,9 +22,10 @@ case class Circle(r: Int, colour: Colour) extends Shape{
     r * r * math.Pi
   }
 
-  def colour: Colour = {
-    this.colour = colour
+  def getColour: Colour = {
+    new Red
   }
+
 }
 
 case class Square(x: Int) extends Shape{
@@ -40,7 +41,9 @@ case class Square(x: Int) extends Shape{
     x * x
   }
 
-  def colour: Colour = this.colour
+  def getColour: Colour = {
+    new Yellow
+  }
 }
 
 case class Rectangle(w: Int, l: Int) extends Shape{
@@ -56,7 +59,9 @@ case class Rectangle(w: Int, l: Int) extends Shape{
   def area: Double = {
     w * l
   }
-  def colour: Colour = this.colour
+  def getColour: Colour = {
+    new Pink
+  }
 }
 
 abstract class Rectangular extends Shape {
@@ -73,7 +78,9 @@ case class Square2(x: Int) extends Rectangular{
   def area: Double = {
     x * x
   }
-  def colour: Colour = this.colour
+  def getColour: Colour = {
+    new Yellow
+  }
 }
 
 case class Rectangle2(w: Int, l: Int) extends Rectangular{
@@ -86,23 +93,24 @@ case class Rectangle2(w: Int, l: Int) extends Rectangular{
   def area: Double = {
     w * l
   }
-  def colour: Colour = this.colour
+  def getColour: Colour = {
+    new Yellow
+  }
 }
 
 
 
 object Draw {
   def apply(shape: Shape): String = shape match {
-    case circle: Circle => "A circle has a radius " + circle.r + "colour is " + circle.colour
-    case square: Square => "A square has 4 sides = " + square.x + "colour is " + square.colour
-    case rectangle: Rectangle => "A rectangle has a width: " + rectangle.w + " and a length: " + rectangle.l + "colour is " + rectangle.colour
+    case circle: Circle => "A circle has a radius " + circle.r + "colour is " + circle.getColour
+    case square: Square => "A square has 4 sides = " + square.x + "colour is "
+    case rectangle: Rectangle => "A rectangle has a width: " + rectangle.w + " and a length: " + rectangle.l + "colour is "
   }
 
-  def getColour(shape: Shape): String = shape.colour match {
-    case r: Red => "Red"
-    case y: Yellow => "Yellow"
-    case p: Pink => "Pink"
-    case  c: custom => lightDark(c)
+  def getColour(shape: Shape): String = shape.getColour.toString match {
+    case "Red" => "Red"
+    case "Yellow" => "Yellow"
+    case "Pink" => "Pink"
   }
 }
 
@@ -148,4 +156,6 @@ def lightDark(colour: Colour): String = {
   else "light"
 }
 
+val d2 = Draw
+d.apply(Circle(10)) is "A circle of radius 10 colour is Red"
 
