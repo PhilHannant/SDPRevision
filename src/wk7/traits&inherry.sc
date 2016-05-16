@@ -1,10 +1,11 @@
 import atomic.AtomicTest._
 
 sealed trait Shape{
+  var c: Colour = new Red
   def sides:Int
   def perimeter:Double
   def area:Double
-  def getColour: Colour
+  def getColour: Colour = c
 }
 
 
@@ -22,10 +23,6 @@ case class Circle(r: Int) extends Shape{
     r * r * math.Pi
   }
 
-  def getColour: Colour = {
-    new Red
-  }
-
 }
 
 case class Square(x: Int) extends Shape{
@@ -41,9 +38,6 @@ case class Square(x: Int) extends Shape{
     x * x
   }
 
-  def getColour: Colour = {
-    new Yellow
-  }
 }
 
 case class Rectangle(w: Int, l: Int) extends Shape{
@@ -58,9 +52,6 @@ case class Rectangle(w: Int, l: Int) extends Shape{
 
   def area: Double = {
     w * l
-  }
-  def getColour: Colour = {
-    new Pink
   }
 }
 
@@ -78,9 +69,6 @@ case class Square2(x: Int) extends Rectangular{
   def area: Double = {
     x * x
   }
-  def getColour: Colour = {
-    new Yellow
-  }
 }
 
 case class Rectangle2(w: Int, l: Int) extends Rectangular{
@@ -93,21 +81,18 @@ case class Rectangle2(w: Int, l: Int) extends Rectangular{
   def area: Double = {
     w * l
   }
-  def getColour: Colour = {
-    new Yellow
-  }
 }
 
 
 
 object Draw {
   def apply(shape: Shape): String = shape match {
-    case circle: Circle => "A circle has a radius " + circle.r + "colour is " + circle.getColour
+    case circle: Circle => "A circle has a radius " + circle.r + "colour is " + getCol(circle)
     case square: Square => "A square has 4 sides = " + square.x + "colour is "
     case rectangle: Rectangle => "A rectangle has a width: " + rectangle.w + " and a length: " + rectangle.l + "colour is "
   }
 
-  def getColour(shape: Shape): String = shape.getColour.toString match {
+  def getCol(shape: Shape): String = shape.getColour.toString match {
     case "Red" => "Red"
     case "Yellow" => "Yellow"
     case "Pink" => "Pink"
@@ -158,4 +143,5 @@ def lightDark(colour: Colour): String = {
 
 val d2 = Draw
 d.apply(Circle(10)) is "A circle of radius 10 colour is Red"
+
 
