@@ -32,19 +32,4 @@ class book(author: String) extends publication
 class periodical(editor: String, volume: Int, issue: Int) extends publication
 class manuscript
 
-sealed trait LinkedList[A]{
-  def head: A
-  def tail: LinkedList[A]
-}
-case class Pair[A](head: A, tail: LinkedList[A]) extends LinkedList[A]
-case class Empty[A]() extends LinkedList[A]{
-  def head = throw new Exception("error")
-  def tail = throw new Exception("error")
-}
 
-val list: LinkedList[Int] = Pair(1, Pair(2, Pair(3, Empty())))
-list.isInstanceOf[LinkedList[Int]]
-
-list.head // returns 1 as an Int
-list.tail.head // returns 2 as an Int
-list.tail.tail // returns Pair(3, Empty()) as a LinkedList[Int]
