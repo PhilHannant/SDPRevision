@@ -33,3 +33,29 @@ class periodical(editor: String, volume: Int, issue: Int) extends publication
 class manuscript
 
 
+class Language {
+  override def toString = "Language"
+}
+trait ObjectOriented extends Language {
+  override def toString = "Object-Oriented -> " + super.toString
+}
+trait Functional extends Language {
+  override def toString = "Functional -> " + super.toString
+}
+trait HigherOrderFunctions extends Functional {
+  override def toString = "HO-Functions -> " + super.toString
+}
+trait Traits extends ObjectOriented {
+  override def toString = "Traits -> " + super.toString
+}
+class Scala extends Language with Traits with HigherOrderFunctions {
+  override def toString = "Scala -> " + super.toString
+}
+val language = new Scala
+
+List(List("a"), List("ab"), List("abc"), List("abcd"))
+.map(x => x.count(s => s.length > 1))
+
+List(List(1), List(1, 1), List(1, 1, 1), List(1, 1, 1, 1))
+.filter(x => x.length > 1)
+  .map(x => x.reduceRight((a,b) => a * b))
