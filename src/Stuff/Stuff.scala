@@ -33,6 +33,7 @@ object stuffTest extends App {
     }
 
 
+
   val list = List(1.0,2.0,3.0,4.0,5.0)
 //  val newList = map(list, x=>x*x)
   val newList2 = foldLeft(list, 1, (a:Double,i:Double) => (a/i))

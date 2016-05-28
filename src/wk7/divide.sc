@@ -59,3 +59,13 @@ List(List("a"), List("ab"), List("abc"), List("abcd"))
 List(List(1), List(1, 1), List(1, 1, 1), List(1, 1, 1, 1))
 .filter(x => x.length > 1)
   .map(x => x.reduceRight((a,b) => a * b))
+
+val li1 = List(1,2,3,4,5)
+val li2 = List(3,4,53,5,6)
+val li3 = li1 :: li2
+val li4 = li2 ::: li3
+
+((1 until 10) map (x => x * x) filter (y => y % 2 == 0)) map (y => y + 3)
+((1 until 10) map (x => x * x + 3) filter (y => y % 2 == 0))
+((1 until 10) filter ( y => y % 2 == 0)) map ( x => x * x) map( y => y + 3)
+((1 until 10) filter (y => y % 2 == 0)) map (x => x * x + 3)
