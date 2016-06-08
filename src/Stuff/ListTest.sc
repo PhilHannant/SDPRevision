@@ -33,4 +33,19 @@ trait PimpedList[T] {
   }
 }
 val testList = List(3, 6, 1, 3, 8, 7, 9, 1)
+
 testList.length
+
+
+class Fruit
+class Apple { val fruit: Fruit = new Fruit()}
+
+def j(xs: List[Int], g: (Int, Int) => Boolean) = {
+  def h(x: Int, xs: List[Int]): List[Int] =
+    xs match {
+      case List() => List(x)
+      case y :: ys => if (!g(x,y)) x :: xs else y :: h(x, ys)
+    }
+  (xs :\ List[Int]())(h)
+}
+val v = j(List(3, 6, 1, 3, 8, 7, 9, 1), (_ > _))
